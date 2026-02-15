@@ -8,6 +8,11 @@ const {
   getEvents
 } = require("../controllers/event.controller");
 
+
+// Lock tickets for an event
+const { lockTickets } = require("../controllers/event.controller");
+router.post("/:id/lock-tickets", auth, role("CUSTOMER"), lockTickets);
+
 router.get("/", getEvents);
 router.post("/", auth, role("ORGANIZER"), createEvent);
 router.put("/:id", auth, role("ORGANIZER"), updateEvent);
